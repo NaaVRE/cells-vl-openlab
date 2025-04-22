@@ -20,5 +20,5 @@ sentences = json.loads(args.sentences)
 
 
 
-print(sentences)
+print(sentences) 
 
