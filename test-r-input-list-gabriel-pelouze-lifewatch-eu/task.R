@@ -47,7 +47,7 @@ id <- gsub('"', '', opt$id)
 
 
 print("Running the cell")
-names = list("Alice", "Bob")
+names = list("Alice", "Bob", "Eve")
 # capturing outputs
 print('Serialization of names')
 file <- file(paste0('/tmp/names_', id, '.json'))
