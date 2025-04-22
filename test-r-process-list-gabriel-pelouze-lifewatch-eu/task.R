@@ -60,5 +60,5 @@ id <- gsub('"', '', opt$id)
 
 print("Running the cell")
 for (name in names) {
-  print(sprintf("Hello, %s!", name))
+  print(sprintf("Hello, %s! ", name))
 }
