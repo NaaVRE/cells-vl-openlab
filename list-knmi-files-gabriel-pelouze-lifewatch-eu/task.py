@@ -42,6 +42,7 @@ we eval init_complete first before
 we test if it contains "Yes"
 """
 
+print("recontainerize")
 
 init_complete = init_complete.replace("'", "")
 init_complete = init_complete.replace('"', "")
