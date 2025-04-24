@@ -1,4 +1,4 @@
-import requests
+from colorhash import ColorHash
 
 import argparse
 import json
@@ -18,10 +18,9 @@ id = args.id
 
 
 
-r = requests.get('https://api.github.com/user', auth=('user', 'pass'))
-code = r.status_code
-print(code)
+c = ColorHash('Hello World').hex
+print(c)
 
-file_code = open("/tmp/code_" + id + ".json", "w")
-file_code.write(json.dumps(code))
-file_code.close()
+file_c = open("/tmp/c_" + id + ".json", "w")
+file_c.write(json.dumps(c))
+file_c.close()
