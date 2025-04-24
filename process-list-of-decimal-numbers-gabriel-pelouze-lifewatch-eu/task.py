@@ -21,5 +21,5 @@ decimal_numbers = json.loads(args.decimal_numbers)
 
 
 for number in decimal_numbers:
-    print(f"Hello, {number}!")
+    print(f"Hello, {number}! ")
 
