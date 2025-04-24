@@ -28,5 +28,5 @@ single_number = args.single_number
 
 print(single_name)
 print(single_number)
-print(single_decimal)
+print(single_decimal )
 
