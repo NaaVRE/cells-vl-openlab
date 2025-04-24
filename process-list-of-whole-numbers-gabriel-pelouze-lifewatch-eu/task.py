@@ -21,5 +21,5 @@ whole_numbers = json.loads(args.whole_numbers)
 
 
 for number in whole_numbers:
-    print(f"Hello, {number}!")
+    print(f"Hello, {number}!" )
 
