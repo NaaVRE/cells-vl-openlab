@@ -47,7 +47,7 @@ id <- gsub('"', '', opt$id)
 
 
 print("Running the cell")
-names = list("Alice", "Bob ")
+names = list("Alice", "Bob" )
 numbers = list(1, 2)
 floats = list(1.1, 1.2)
 # capturing outputs
