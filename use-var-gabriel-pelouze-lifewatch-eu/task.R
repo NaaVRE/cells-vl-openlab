@@ -55,4 +55,4 @@ id <- gsub('"', '', opt$id)
 
 
 print("Running the cell")
-print(new_name)
+print(new_name )
