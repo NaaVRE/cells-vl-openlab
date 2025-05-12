@@ -8,10 +8,6 @@ library(jsonlite)
 print('option_list')
 option_list = list(
 
-make_option(c("--param_float"), action="store", default=NA, type="numeric", help="my description"),
-make_option(c("--param_int"), action="store", default=NA, type="integer", help="my description"),
-make_option(c("--param_string"), action="store", default=NA, type="character", help="my description"),
-make_option(c("--param_string_with_comment"), action="store", default=NA, type="character", help="my description"),
 make_option(c("--var_float"), action="store", default=NA, type="numeric", help="my description"),
 make_option(c("--var_int"), action="store", default=NA, type="integer", help="my description"),
 make_option(c("--var_string"), action="store", default=NA, type="character", help="my description"),
@@ -51,34 +47,6 @@ var_serialization <- function(var){
     )
 }
 
-print("Retrieving param_float")
-var = opt$param_float
-print(var)
-var_len = length(var)
-print(paste("Variable param_float has length", var_len))
-
-param_float = opt$param_float
-print("Retrieving param_int")
-var = opt$param_int
-print(var)
-var_len = length(var)
-print(paste("Variable param_int has length", var_len))
-
-param_int = opt$param_int
-print("Retrieving param_string")
-var = opt$param_string
-print(var)
-var_len = length(var)
-print(paste("Variable param_string has length", var_len))
-
-param_string <- gsub("\"", "", opt$param_string)
-print("Retrieving param_string_with_comment")
-var = opt$param_string_with_comment
-print(var)
-var_len = length(var)
-print(paste("Variable param_string_with_comment has length", var_len))
-
-param_string_with_comment <- gsub("\"", "", opt$param_string_with_comment)
 print("Retrieving var_float")
 var = opt$var_float
 print(var)
@@ -122,12 +90,6 @@ print(paste('conf_float: ', conf_float, ' type: ', class(conf_float)))
 print(paste('conf_list_int: ', toString(conf_list_int), ' type: ', class(conf_list_int)))
 print(paste('conf_list_str: ', toString(conf_list_str), ' type: ', class(conf_list_str)))
 
-print(paste('param_string: ', param_string, ' type: ', class(param_string)))
-print(paste('param_string_with_comment: ', param_string_with_comment, ' type: ', class(param_string_with_comment)))
-print(paste('param_int: ', param_int, ' type: ', class(param_int)))
-print(paste('param_float: ', param_float, ' type: ', class(param_float)))
-print(paste('param_list_int: ', toString(param_list_int), ' type: ', class(param_list_int)))
-print(paste('param_list_str: ', toString(param_list_str), ' type: ', class(param_list_str)))
 
 print(paste('var_string: ', var_string, ' type: ', class(var_string)))
 print(paste('var_string_with_comment: ', var_string_with_comment, ' type: ', class(var_string_with_comment)))
@@ -164,19 +126,6 @@ if (is.character(conf_list_str)) {
 }
 check_type(conf_list_str, c("list"))
 
-check_type(param_string, c("character"))
-check_type(param_string_with_comment, c("character"))
-check_type(param_int, c("numeric", "integer"))
-check_type(param_float, c("numeric", "float"))
-if (is.numeric(param_list_int)) {
-  param_list_int <- list(param_list_int)
-}
-check_type(param_list_int, c("list"))
-check_type(conf_list_int, c("list"))
-if (is.character(param_list_str)) {
-  param_list_str <- list(param_list_str)
-}
-check_type(param_list_str, c("list"))
 
 check_type(var_string, c("character"))
 check_type(var_string_with_comment, c("character"))
