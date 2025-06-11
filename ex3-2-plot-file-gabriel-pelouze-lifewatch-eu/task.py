@@ -1,3 +1,5 @@
+import numpy
+from matplotlib import pyplot
 import os
 
 import argparse
@@ -22,17 +24,17 @@ data_file = args.data_file.replace('"','')
 
 conf_data_path = conf_data_path = '/tmp/data'
 
-data = np.loadtxt(data_file)
+data = numpy.loadtxt(data_file)
 
-plt.hist(data, bins=50, density=True, label="Normal distribution")
-plt.xlabel("Value [unitless]")
-plt.ylabel("Probability density")
-plt.title("A plot made with NaaVRE")
-plt.legend()
+pyplot.hist(data, bins=50, density=True, label="Normal distribution")
+pyplot.xlabel("Value [unitless]")
+pyplot.ylabel("Probability density")
+pyplot.title("A plot made with NaaVRE")
+pyplot.legend()
 
 figure_file = os.path.join(conf_data_path, "ex3-figure.pdf")
 os.makedirs(conf_data_path, exist_ok=True)
-plt.savefig(figure_file)
+pyplot.savefig(figure_file)
 
 file_figure_file = open("/tmp/figure_file_" + id + ".json", "w")
 file_figure_file.write(json.dumps(figure_file))
