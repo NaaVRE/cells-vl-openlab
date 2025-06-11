@@ -1,4 +1,5 @@
 import os
+import numpy
 
 import argparse
 import json
@@ -19,11 +20,11 @@ id = args.id
 
 conf_data_path = conf_data_path = '/tmp/data'
 
-numbers = np.random.normal(size=100_000)
+numbers = numpy.random.normal(size=100_000)
 
 data_file = os.path.join(conf_data_path, "ex3-data.out")
 os.makedirs(conf_data_path, exist_ok=True)
-np.savetxt(data_file, numbers)
+numpy.savetxt(data_file, numbers)
 
 file_data_file = open("/tmp/data_file_" + id + ".json", "w")
 file_data_file.write(json.dumps(data_file))
