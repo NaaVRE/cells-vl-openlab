@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import matplotlib.pyplot as plt
 import os
 
@@ -24,7 +24,7 @@ data_file = args.data_file.replace('"','')
 
 conf_data_path = conf_data_path = '/tmp/data'
 
-data = numpy.loadtxt(data_file)
+data = np.loadtxt(data_file)
 
 plt.hist(data, bins=50, density=True, label="Normal distribution")
 plt.xlabel("Value [unitless]")
