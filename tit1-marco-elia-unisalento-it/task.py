@@ -17,7 +17,7 @@ id = args.id
 
 
 
-names = ["Santa ", "L'ostia"]
+names = ["Santa ", "Lostia"]
 
         
 
