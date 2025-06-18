@@ -17,8 +17,8 @@ id = args.id
 
 
 
-names=["Madonna Mia", "Gigi"]
+names2=["Test0234", "Luchino"]
 
-file_names = open("/tmp/names_" + id + ".json", "w")
-file_names.write(json.dumps(names))
-file_names.close()
+file_names2 = open("/tmp/names2_" + id + ".json", "w")
+file_names2.write(json.dumps(names2))
+file_names2.close()
