@@ -83,11 +83,11 @@ def compute_kde_area(df, selected_codes, percentile=95, grid_res=100j, bandwidth
 
     return pd.DataFrame(results).set_index('Code')
 
-df = pd.read_csv(file, sep=",")  # ATTENZIONE: usa ; come separatore
+df = pd.read_csv(file, sep=";")  # ATTENZIONE: usa ; come separatore
 
 kde_results = compute_kde_area(df, selected_codes=df["Code"].unique(), percentile=95)
 kde_output='/tmp/data/kde_output.csv'
-kde_results.to_csv(kde_output, sep=",", index=False)
+kde_results.to_csv(kde_output, sep=";", index=False)
 
 file_kde_output = open("/tmp/kde_output_" + id + ".json", "w")
 file_kde_output.write(json.dumps(kde_output))
