@@ -5,10 +5,10 @@ dependencies:
   - pip
   - python>=3.8
   - nbconvert
-  - shapely
   - pandas
-  - scipy
-  - skimage
   - numpy
+  - scipy
+  - shapely
+  - scikit-image
   - papermill
   - ipykernel
