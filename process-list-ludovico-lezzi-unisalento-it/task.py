@@ -24,3 +24,6 @@ sentences = []
 for name in names:
     sentences.append(f"Hello, {name}!")
 
+file_sentences = open("/tmp/sentences_" + id + ".json", "w")
+file_sentences.write(json.dumps(sentences))
+file_sentences.close()
