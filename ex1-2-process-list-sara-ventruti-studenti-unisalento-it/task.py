@@ -20,7 +20,16 @@ id = args.id
 
 names = json.loads(args.names)
 
-param_greeting = args.param_greeting.replace('"','')
+print(args.param_greeting)
+print(type(args.param_greeting))
+try:
+    param_greeting = json.loads(args.param_greeting)
+except Exception as e:
+    if e.__class__.__name__ == 'JSONDecodeError':
+        import ast
+        param_greeting = ast.literal_eval(args.param_greeting.replace('[','["').replace(',','","').replace('" ','"').replace(']','"]').replace("'",""))
+    else:
+        raise e
 
 
 for name in names:
