@@ -20,6 +20,7 @@ names = json.loads(args.names)
 
 
 
+sentences = []
 for name in names:
-    print(f'Hello, {name}!')
+    sentences.append(f"Hello, {name}!")
 
