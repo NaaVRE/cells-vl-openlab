@@ -23,8 +23,8 @@ selectedData = json.loads(args.selectedData)
 
 
 
-for name in BioindexesTable:
-    BioindexesTable.append(f"Hello, {name}!")
-for name in selectedData:
-    BioindexesTable.append(f"Hello, {name}!")
+for names in BioindexesTable:
+    BioindexesTable.append(f"Hello, {names}!")
+for names in selectedData:
+    BioindexesTable.append(f"Hello, {names}!")
 
