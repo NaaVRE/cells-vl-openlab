@@ -20,11 +20,11 @@ selectedBdata = json.loads(args.selectedBdata)
 
 
 
-indexesTable = []
+indexesBTable = []
 
 for name in selectedBdata:
-    indexesTable.append(f"Hello, {name}!")
+    indexesBTable.append(f"Hello, {name}!")
 
-file_indexesTable = open("/tmp/indexesTable_" + id + ".json", "w")
-file_indexesTable.write(json.dumps(indexesTable))
-file_indexesTable.close()
+file_indexesBTable = open("/tmp/indexesBTable_" + id + ".json", "w")
+file_indexesBTable.write(json.dumps(indexesBTable))
+file_indexesBTable.close()
