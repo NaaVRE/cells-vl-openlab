@@ -17,7 +17,7 @@ id = args.id
 
 
 
-msg = 'Initial version'
+msg = 'New version (same io)'
 
 file_msg = open("/tmp/msg_" + id + ".json", "w")
 file_msg.write(json.dumps(msg))
