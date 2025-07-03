@@ -18,7 +18,11 @@ id = args.id
 
 
 msg = 'New version (same io)'
+value = 1
 
 file_msg = open("/tmp/msg_" + id + ".json", "w")
 file_msg.write(json.dumps(msg))
 file_msg.close()
+file_value = open("/tmp/value_" + id + ".json", "w")
+file_value.write(json.dumps(value))
+file_value.close()
