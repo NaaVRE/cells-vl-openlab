@@ -1,6 +1,5 @@
+import argopy
 from argopy import DataFetcher
-import numpy as np
-from matplotlib import dates as mdates
 
 import argparse
 import json
@@ -50,24 +49,10 @@ ds = f.to_xarray()
 dsargo = ds.argo.point2profile()
 dsargo_surf = dsargo.isel(N_LEVELS=0)
 
-longitudes              = dsargo_surf['LONGITUDE'].values.flatten().tolist()
-latitudes               = dsargo_surf['LATITUDE'].values.flatten().tolist()
-temperatures_spatial    = dsargo_surf['TEMP'].values.flatten().tolist()
-temperatures_temporal   = temperatures_spatial[:]  # same data
-_times_dt               = dsargo_surf['TIME'].values.astype('datetime64[ms]').astype('O').tolist()
-times                   = mdates.date2num(_times_dt).tolist()
-
-t_arr = ds['TEMP'].values
-p_arr = ds['PRES'].values
-mask  = np.isfinite(t_arr) & np.isfinite(p_arr)
-temperatures_vertical = t_arr[mask].ravel().astype(float).tolist()
-pressures_vertical    = (-p_arr[mask]).ravel().astype(float).tolist()
-
-temp_long_name  = str(ds['TEMP'].attrs.get('long_name', 'Temperature'))
-temp_units      = str(ds['TEMP'].attrs.get('units', ''))
-title_temporal  = f"{temp_long_name} in {temp_units} at the surface betw. {param_date_min} and {param_date_max}"
-title_spatial   = f"Sea-surface temperatures in C° betw. {param_date_min} and {param_date_max}"
-title_vertical  = f"Sea subsurface temperatures in C° betw. {param_date_min} and {param_date_max}"
+longitudes   = dsargo_surf['LONGITUDE'].values.flatten().tolist()   # list[float]
+latitudes    = dsargo_surf['LATITUDE'].values.flatten().tolist()    # list[float]
+temperatures = dsargo_surf['TEMP'].values.flatten().tolist()        # list[float]
+title_str    = 'Sea-surface temperatures in C° betw. ' + str(param_date_min) + ' and ' + str(param_date_max)  # string
 
 file_latitudes = open("/tmp/latitudes_" + id + ".json", "w")
 file_latitudes.write(json.dumps(latitudes))
@@ -75,27 +60,9 @@ file_latitudes.close()
 file_longitudes = open("/tmp/longitudes_" + id + ".json", "w")
 file_longitudes.write(json.dumps(longitudes))
 file_longitudes.close()
-file_pressures_vertical = open("/tmp/pressures_vertical_" + id + ".json", "w")
-file_pressures_vertical.write(json.dumps(pressures_vertical))
-file_pressures_vertical.close()
-file_temperatures_spatial = open("/tmp/temperatures_spatial_" + id + ".json", "w")
-file_temperatures_spatial.write(json.dumps(temperatures_spatial))
-file_temperatures_spatial.close()
-file_temperatures_temporal = open("/tmp/temperatures_temporal_" + id + ".json", "w")
-file_temperatures_temporal.write(json.dumps(temperatures_temporal))
-file_temperatures_temporal.close()
-file_temperatures_vertical = open("/tmp/temperatures_vertical_" + id + ".json", "w")
-file_temperatures_vertical.write(json.dumps(temperatures_vertical))
-file_temperatures_vertical.close()
-file_times = open("/tmp/times_" + id + ".json", "w")
-file_times.write(json.dumps(times))
-file_times.close()
-file_title_spatial = open("/tmp/title_spatial_" + id + ".json", "w")
-file_title_spatial.write(json.dumps(title_spatial))
-file_title_spatial.close()
-file_title_temporal = open("/tmp/title_temporal_" + id + ".json", "w")
-file_title_temporal.write(json.dumps(title_temporal))
-file_title_temporal.close()
-file_title_vertical = open("/tmp/title_vertical_" + id + ".json", "w")
-file_title_vertical.write(json.dumps(title_vertical))
-file_title_vertical.close()
+file_temperatures = open("/tmp/temperatures_" + id + ".json", "w")
+file_temperatures.write(json.dumps(temperatures))
+file_temperatures.close()
+file_title_str = open("/tmp/title_str_" + id + ".json", "w")
+file_title_str.write(json.dumps(title_str))
+file_title_str.close()
