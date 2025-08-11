@@ -12,8 +12,6 @@ arg_parser.add_argument('--id', action='store', type=str, required=True, dest='i
 
 arg_parser.add_argument('--dsargo_surf', action='store', type=str, required=True, dest='dsargo_surf')
 
-arg_parser.add_argument('--plt', action='store', type=str, required=True, dest='plt')
-
 arg_parser.add_argument('--param_date_max', action='store', type=str, required=True, dest='param_date_max')
 arg_parser.add_argument('--param_date_min', action='store', type=str, required=True, dest='param_date_min')
 
@@ -23,7 +21,6 @@ print(args)
 id = args.id
 
 dsargo_surf = json.loads(args.dsargo_surf)
-plt = json.loads(args.plt)
 
 param_date_max = args.param_date_max.replace('"','')
 param_date_min = args.param_date_min.replace('"','')
