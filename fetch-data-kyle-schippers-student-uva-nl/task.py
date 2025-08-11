@@ -37,9 +37,32 @@ param_lon_west = args.param_lon_west
 param_src = args.param_src.replace('"','')
 
 
-argopy.set_options(src=param_src,ds='phy',mode='standard')
-f=DataFetcher().region([param_lon_west,param_lon_east,param_lat_south,param_lat_north,param_depth_min,param_depth_max,param_date_min,param_date_max])
-print(f)
-ds=f.to_xarray()
-print(ds)
+argopy.set_options(src=param_src, ds='phy', mode='standard')
+f = DataFetcher().region([
+    param_lon_west, param_lon_east,
+    param_lat_south, param_lat_north,
+    param_depth_min, param_depth_max,
+    param_date_min, param_date_max
+])
+ds = f.to_xarray()
 
+dsargo = ds.argo.point2profile()
+dsargo_surf = dsargo.isel(N_LEVELS=0)
+
+longitudes   = dsargo_surf['LONGITUDE'].values.flatten().tolist()   # list[float]
+latitudes    = dsargo_surf['LATITUDE'].values.flatten().tolist()    # list[float]
+temperatures = dsargo_surf['TEMP'].values.flatten().tolist()        # list[float]
+title_str    = 'Sea-surface temperatures in C° betw. ' + str(param_date_min) + ' and ' + str(param_date_max)  # string
+
+file_latitudes = open("/tmp/latitudes_" + id + ".json", "w")
+file_latitudes.write(json.dumps(latitudes))
+file_latitudes.close()
+file_longitudes = open("/tmp/longitudes_" + id + ".json", "w")
+file_longitudes.write(json.dumps(longitudes))
+file_longitudes.close()
+file_temperatures = open("/tmp/temperatures_" + id + ".json", "w")
+file_temperatures.write(json.dumps(temperatures))
+file_temperatures.close()
+file_title_str = open("/tmp/title_str_" + id + ".json", "w")
+file_title_str.write(json.dumps(title_str))
+file_title_str.close()
