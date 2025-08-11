@@ -1,5 +1,4 @@
 from matplotlib import pyplot as plt
-import os
 
 import argparse
 import json
@@ -41,9 +40,5 @@ plt.ylabel(ylabel_vertical)
 plt.xlabel(xlabel_vertical)
 plt.scatter(temperatures_vertical, pressures_vertical, c=temperatures_vertical, marker="o", cmap="viridis", s=3)
 plt.colorbar()
-
-os.makedirs("/outputs", exist_ok=True)
-out_png = "/outputs/vertical.png"
-plt.savefig(out_png, dpi=150, bbox_inches="tight")
-plt.close()
+plt.show()
 
