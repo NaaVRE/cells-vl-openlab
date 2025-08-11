@@ -43,6 +43,3 @@ print(f)
 ds=f.to_xarray()
 print(ds)
 
-file_ds = open("/tmp/ds_" + id + ".json", "w")
-file_ds.write(json.dumps(ds))
-file_ds.close()
