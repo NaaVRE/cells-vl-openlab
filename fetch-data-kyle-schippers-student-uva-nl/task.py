@@ -1,4 +1,3 @@
-import argopy
 from argopy import DataFetcher
 import numpy as np
 from matplotlib import dates as mdates
@@ -69,8 +68,6 @@ temp_units      = str(ds['TEMP'].attrs.get('units', ''))
 title_temporal  = f"{temp_long_name} in {temp_units} at the surface betw. {param_date_min} and {param_date_max}"
 title_spatial   = f"Sea-surface temperatures in C° betw. {param_date_min} and {param_date_max}"
 title_vertical  = f"Sea subsurface temperatures in C° betw. {param_date_min} and {param_date_max}"
-ylabel_vertical = 'pressure [dbar]'
-xlabel_vertical = 'temperature [°C]'
 
 file_latitudes = open("/tmp/latitudes_" + id + ".json", "w")
 file_latitudes.write(json.dumps(latitudes))
@@ -81,6 +78,12 @@ file_longitudes.close()
 file_pressures_vertical = open("/tmp/pressures_vertical_" + id + ".json", "w")
 file_pressures_vertical.write(json.dumps(pressures_vertical))
 file_pressures_vertical.close()
+file_temperatures_spatial = open("/tmp/temperatures_spatial_" + id + ".json", "w")
+file_temperatures_spatial.write(json.dumps(temperatures_spatial))
+file_temperatures_spatial.close()
+file_temperatures_temporal = open("/tmp/temperatures_temporal_" + id + ".json", "w")
+file_temperatures_temporal.write(json.dumps(temperatures_temporal))
+file_temperatures_temporal.close()
 file_temperatures_vertical = open("/tmp/temperatures_vertical_" + id + ".json", "w")
 file_temperatures_vertical.write(json.dumps(temperatures_vertical))
 file_temperatures_vertical.close()
@@ -96,9 +99,3 @@ file_title_temporal.close()
 file_title_vertical = open("/tmp/title_vertical_" + id + ".json", "w")
 file_title_vertical.write(json.dumps(title_vertical))
 file_title_vertical.close()
-file_xlabel_vertical = open("/tmp/xlabel_vertical_" + id + ".json", "w")
-file_xlabel_vertical.write(json.dumps(xlabel_vertical))
-file_xlabel_vertical.close()
-file_ylabel_vertical = open("/tmp/ylabel_vertical_" + id + ".json", "w")
-file_ylabel_vertical.write(json.dumps(ylabel_vertical))
-file_ylabel_vertical.close()
