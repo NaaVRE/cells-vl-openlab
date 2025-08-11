@@ -13,8 +13,6 @@ arg_parser.add_argument('--latitudes', action='store', type=str, required=True, 
 
 arg_parser.add_argument('--longitudes', action='store', type=str, required=True, dest='longitudes')
 
-arg_parser.add_argument('--plt', action='store', type=str, required=True, dest='plt')
-
 arg_parser.add_argument('--temperatures', action='store', type=str, required=True, dest='temperatures')
 
 arg_parser.add_argument('--title_spatial', action='store', type=str, required=True, dest='title_spatial')
@@ -27,7 +25,6 @@ id = args.id
 
 latitudes = json.loads(args.latitudes)
 longitudes = json.loads(args.longitudes)
-plt = json.loads(args.plt)
 temperatures = json.loads(args.temperatures)
 title_spatial = args.title_spatial.replace('"','')
 
