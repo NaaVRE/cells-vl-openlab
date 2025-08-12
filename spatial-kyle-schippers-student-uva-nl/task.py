@@ -1,3 +1,4 @@
+import os
 from matplotlib import pyplot as plt
 
 import argparse
@@ -30,11 +31,18 @@ title_str = args.title_str.replace('"','')
 
 
 
+output_dir = os.getenv("NAAVRE_OUTPUT_PATH") or os.getenv("OUTPUT_PATH") or os.getcwd()
+
+os.makedirs(output_dir, exist_ok=True)
+
+output_path = os.path.join(output_dir, "sea_surface_temperature.png")
+
 plt.figure(figsize=(14, 5))
 plt.axes().set_aspect('equal')
 plt.title(title_str)
 plt.grid()
-plt.scatter(longitudes, latitudes, c=temperatures, marker="o", cmap="viridis", s=3)
-plt.colorbar()
-plt.show()
+sc = plt.scatter(longitudes, latitudes, c=temperatures, marker="o", cmap="viridis", s=3)
+plt.colorbar(sc, label="Temperature (°C)")
+
+plt.savefig(output_path, dpi=150, bbox_inches="tight")
 
