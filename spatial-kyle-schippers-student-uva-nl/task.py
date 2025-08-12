@@ -16,8 +16,8 @@ arg_parser.add_argument('--longitudes', action='store', type=str, required=True,
 
 arg_parser.add_argument('--temperatures', action='store', type=str, required=True, dest='temperatures')
 
-arg_parser.add_argument('--title_str', action='store', type=str, required=True, dest='title_str')
-
+arg_parser.add_argument('--param_date_max', action='store', type=str, required=True, dest='param_date_max')
+arg_parser.add_argument('--param_date_min', action='store', type=str, required=True, dest='param_date_min')
 
 args = arg_parser.parse_args()
 print(args)
@@ -27,8 +27,9 @@ id = args.id
 latitudes = json.loads(args.latitudes)
 longitudes = json.loads(args.longitudes)
 temperatures = json.loads(args.temperatures)
-title_str = args.title_str.replace('"','')
 
+param_date_max = args.param_date_max.replace('"','')
+param_date_min = args.param_date_min.replace('"','')
 
 
 output_dir = os.getenv("NAAVRE_OUTPUT_PATH") or os.getenv("OUTPUT_PATH") or os.getcwd()
@@ -36,6 +37,8 @@ output_dir = os.getenv("NAAVRE_OUTPUT_PATH") or os.getenv("OUTPUT_PATH") or os.g
 os.makedirs(output_dir, exist_ok=True)
 
 output_path = os.path.join(output_dir, "sea_surface_temperature.png")
+
+title_str    = 'Sea-surface temperatures in C° betw. ' + str(param_date_min) + ' and ' + str(param_date_max)  # string
 
 plt.figure(figsize=(14, 5))
 plt.axes().set_aspect('equal')
