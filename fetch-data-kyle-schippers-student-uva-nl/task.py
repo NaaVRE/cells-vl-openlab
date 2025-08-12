@@ -49,11 +49,13 @@ ds = f.to_xarray()
 dsargo = ds.argo.point2profile()
 dsargo_surf = dsargo.isel(N_LEVELS=0)
 
-longitudes   = dsargo_surf['LONGITUDE'].values.flatten().tolist()   # list[float]
-latitudes    = dsargo_surf['LATITUDE'].values.flatten().tolist()    # list[float]
-temperatures = dsargo_surf['TEMP'].values.flatten().tolist()        # list[float]
-times = dsargo_surf['TIME'].values
-temperatures_temporal = dsargo_surf['TEMP'].values
+longitudes   = dsargo_surf['LONGITUDE'].values.flatten().tolist() 
+latitudes    = dsargo_surf['LATITUDE'].values.flatten().tolist() 
+temperatures = dsargo_surf['TEMP'].values.flatten().tolist()        
+
+
+pressures_vertical = dsargo['PRES'].values.flatten()
+temperatures_vertical = dsargo['TEMP'].values.flatten()
 
 file_latitudes = open("/tmp/latitudes_" + id + ".json", "w")
 file_latitudes.write(json.dumps(latitudes))
@@ -61,12 +63,12 @@ file_latitudes.close()
 file_longitudes = open("/tmp/longitudes_" + id + ".json", "w")
 file_longitudes.write(json.dumps(longitudes))
 file_longitudes.close()
+file_pressures_vertical = open("/tmp/pressures_vertical_" + id + ".json", "w")
+file_pressures_vertical.write(json.dumps(pressures_vertical))
+file_pressures_vertical.close()
 file_temperatures = open("/tmp/temperatures_" + id + ".json", "w")
 file_temperatures.write(json.dumps(temperatures))
 file_temperatures.close()
-file_temperatures_temporal = open("/tmp/temperatures_temporal_" + id + ".json", "w")
-file_temperatures_temporal.write(json.dumps(temperatures_temporal))
-file_temperatures_temporal.close()
-file_times = open("/tmp/times_" + id + ".json", "w")
-file_times.write(json.dumps(times))
-file_times.close()
+file_temperatures_vertical = open("/tmp/temperatures_vertical_" + id + ".json", "w")
+file_temperatures_vertical.write(json.dumps(temperatures_vertical))
+file_temperatures_vertical.close()
