@@ -52,7 +52,8 @@ dsargo_surf = dsargo.isel(N_LEVELS=0)
 longitudes   = dsargo_surf['LONGITUDE'].values.flatten().tolist()   # list[float]
 latitudes    = dsargo_surf['LATITUDE'].values.flatten().tolist()    # list[float]
 temperatures = dsargo_surf['TEMP'].values.flatten().tolist()        # list[float]
-title_str    = 'Sea-surface temperatures in C° betw. ' + str(param_date_min) + ' and ' + str(param_date_max)  # string
+times = dsargo_surf['TIME'].values
+temperatures_temporal = dsargo_surf['TEMP'].values
 
 file_latitudes = open("/tmp/latitudes_" + id + ".json", "w")
 file_latitudes.write(json.dumps(latitudes))
@@ -63,6 +64,9 @@ file_longitudes.close()
 file_temperatures = open("/tmp/temperatures_" + id + ".json", "w")
 file_temperatures.write(json.dumps(temperatures))
 file_temperatures.close()
-file_title_str = open("/tmp/title_str_" + id + ".json", "w")
-file_title_str.write(json.dumps(title_str))
-file_title_str.close()
+file_temperatures_temporal = open("/tmp/temperatures_temporal_" + id + ".json", "w")
+file_temperatures_temporal.write(json.dumps(temperatures_temporal))
+file_temperatures_temporal.close()
+file_times = open("/tmp/times_" + id + ".json", "w")
+file_times.write(json.dumps(times))
+file_times.close()
