@@ -2,13 +2,17 @@ setwd('/app')
 library(optparse)
 library(jsonlite)
 
+if (!requireNamespace("getRad", quietly = TRUE)) {
+	install.packages("getRad", repos="http://cran.us.r-project.org")
+}
+library(getRad)
 
 
 
 print('option_list')
 option_list = list(
 
-make_option(c("--var12"), action="store", default=NA, type="integer", help="my description"),
+make_option(c("--country"), action="store", default=NA, type="character", help="my description"),
 make_option(c("--id"), action="store", default=NA, type="character", help="task id")
 )
 
@@ -44,15 +48,19 @@ var_serialization <- function(var){
     )
 }
 
-print("Retrieving var12")
-var = opt$var12
+print("Retrieving country")
+var = opt$country
 print(var)
 var_len = length(var)
-print(paste("Variable var12 has length", var_len))
+print(paste("Variable country has length", var_len))
 
-var12 = opt$var12
+country <- gsub("\"", "", opt$country)
 id <- gsub('"', '', opt$id)
 
 
 print("Running the cell")
-print(var12)
+library(getRad)
+
+print(country)
+print("getRad has version:")
+print(packageVersion("getRad"))
