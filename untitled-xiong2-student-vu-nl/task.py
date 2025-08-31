@@ -8,21 +8,28 @@ arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('--id', action='store', type=str, required=True, dest='id')
 
 
+arg_parser.add_argument('--A', action='store', type=str, required=True, dest='A')
+
+arg_parser.add_argument('--B', action='store', type=str, required=True, dest='B')
+
 
 args = arg_parser.parse_args()
 print(args)
 
 id = args.id
 
+A = json.loads(args.A)
+B = json.loads(args.B)
 
 
 
-A=[[1,2,3],[4,5,6]]
-B=[[7,8],[9,10],[11,12]]
+m,k=len(A),len(A[0]); n=len(B[0])
+C=[[0 for _ in range(n)] for _ in range(m)]
+for i in range(m):
+    for j in range(n):
+        s=0
+        for t in range(k):
+            s+=A[i][t]*B[t][j]
+        C[i][j]=s
+for row in C: print(row)
 
-file_A = open("/tmp/A_" + id + ".json", "w")
-file_A.write(json.dumps(A))
-file_A.close()
-file_B = open("/tmp/B_" + id + ".json", "w")
-file_B.write(json.dumps(B))
-file_B.close()
