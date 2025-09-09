@@ -8,7 +8,7 @@ library(jsonlite)
 print('option_list')
 option_list = list(
 
-make_option(c("--names"), action="store", default=NA, type="character", help="my description"),
+make_option(c("--Innames"), action="store", default=NA, type="character", help="my description"),
 make_option(c("--id"), action="store", default=NA, type="character", help="task id")
 )
 
@@ -44,15 +44,15 @@ var_serialization <- function(var){
     )
 }
 
-print("Retrieving names")
-var = opt$names
+print("Retrieving Innames")
+var = opt$Innames
 print(var)
 var_len = length(var)
-print(paste("Variable names has length", var_len))
+print(paste("Variable Innames has length", var_len))
 
-print("------------------------Running var_serialization for names-----------------------")
-print(opt$names)
-names = var_serialization(opt$names)
+print("------------------------Running var_serialization for Innames-----------------------")
+print(opt$Innames)
+Innames = var_serialization(opt$Innames)
 print("---------------------------------------------------------------------------------")
 
 id <- gsub('"', '', opt$id)
@@ -61,7 +61,7 @@ id <- gsub('"', '', opt$id)
 print("Running the cell")
 
 # capturing outputs
-print('Serialization of names')
-file <- file(paste0('/tmp/names_', id, '.json'))
-writeLines(toJSON(names, auto_unbox=TRUE), file)
+print('Serialization of Outnames')
+file <- file(paste0('/tmp/Outnames_', id, '.json'))
+writeLines(toJSON(Outnames, auto_unbox=TRUE), file)
 close(file)
