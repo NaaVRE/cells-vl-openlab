@@ -17,8 +17,8 @@ id = args.id
 
 
 
-names = ["Alice", "Bob"]
+work_items = list(range(50)) 
 
-file_names = open("/tmp/names_" + id + ".json", "w")
-file_names.write(json.dumps(names))
-file_names.close()
+file_work_items = open("/tmp/work_items_" + id + ".json", "w")
+file_work_items.write(json.dumps(work_items))
+file_work_items.close()
