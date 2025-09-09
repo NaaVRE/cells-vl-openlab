@@ -1,4 +1,4 @@
-import numpy
+import acolite
 
 import argparse
 import json
@@ -18,8 +18,9 @@ id = args.id
 
 
 
-val = int(numpy.random.random())
+print(acolite)
+a = 1
 
-file_val = open("/tmp/val_" + id + ".json", "w")
-file_val.write(json.dumps(val))
-file_val.close()
+file_a = open("/tmp/a_" + id + ".json", "w")
+file_a.write(json.dumps(a))
+file_a.close()
