@@ -2,10 +2,10 @@ setwd('/app')
 library(optparse)
 library(jsonlite)
 
-if (!requireNamespace("aws.s3", quietly = TRUE)) {
-	install.packages("aws.s3", repos="http://cran.us.r-project.org")
+if (!requireNamespace("climwin", quietly = TRUE)) {
+	install.packages("climwin", repos="http://cran.us.r-project.org")
 }
-library(aws.s3)
+library(climwin)
 
 
 
@@ -51,8 +51,7 @@ id <- gsub('"', '', opt$id)
 
 
 print("Running the cell")
-library("aws.s3")
-bucketlist()
+library(climwin)
 a = 1
 # capturing outputs
 print('Serialization of a')
