@@ -8,7 +8,7 @@ arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('--id', action='store', type=str, required=True, dest='id')
 
 
-arg_parser.add_argument('--names', action='store', type=str, required=True, dest='names')
+arg_parser.add_argument('--work_items', action='store', type=str, required=True, dest='work_items')
 
 
 args = arg_parser.parse_args()
@@ -16,10 +16,15 @@ print(args)
 
 id = args.id
 
-names = json.loads(args.names)
+work_items = json.loads(args.work_items)
 
 
 
-for name in names:
-  print(f"Hello, {name}!")
+result = 0.0
+for i in work_items:           # ✅ for i in list
+    for j in range(50):
+        for k in range(50):
+            result += (i + j + k) * 0.000001
+
+print(f"Result = {result}")
 
