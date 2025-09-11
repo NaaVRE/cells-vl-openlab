@@ -22,9 +22,4 @@ model_parameters = json.loads(args.model_parameters)
 
 if model_parameters:
     testrun_success = 1
-else:
-    testrun_success = 0
 
-file_testrun_success = open("/tmp/testrun_success_" + id + ".json", "w")
-file_testrun_success.write(json.dumps(testrun_success))
-file_testrun_success.close()
