@@ -19,6 +19,9 @@ id = args.id
 
 
 
+file_cell_id = open("/tmp/cell_id_" + id + ".json", "w")
+file_cell_id.write(json.dumps(cell_id))
+file_cell_id.close()
 file_crop_id = open("/tmp/crop_id_" + id + ".json", "w")
 file_crop_id.write(json.dumps(crop_id))
 file_crop_id.close()
