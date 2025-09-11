@@ -8,15 +8,19 @@ arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('--id', action='store', type=str, required=True, dest='id')
 
 
+arg_parser.add_argument('--model_parameters', action='store', type=str, required=True, dest='model_parameters')
+
 
 args = arg_parser.parse_args()
 print(args)
 
 id = args.id
 
+model_parameters = json.loads(args.model_parameters)
 
 
 
+print(model_parameters)
 raw_data = []
 
 file_raw_data = open("/tmp/raw_data_" + id + ".json", "w")
