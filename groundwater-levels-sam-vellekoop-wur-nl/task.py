@@ -19,6 +19,6 @@ id = args.id
 
 
 
-file_ph_raster_path = open("/tmp/ph_raster_path_" + id + ".json", "w")
-file_ph_raster_path.write(json.dumps(ph_raster_path))
-file_ph_raster_path.close()
+file_gvg_raster_path = open("/tmp/gvg_raster_path_" + id + ".json", "w")
+file_gvg_raster_path.write(json.dumps(gvg_raster_path))
+file_gvg_raster_path.close()
