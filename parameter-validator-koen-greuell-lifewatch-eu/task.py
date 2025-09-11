@@ -19,8 +19,5 @@ id = args.id
 param_setting1 = args.param_setting1.replace('"','')
 
 
-model_parameters = [param_setting1]
+print(param_setting1)
 
-file_model_parameters = open("/tmp/model_parameters_" + id + ".json", "w")
-file_model_parameters.write(json.dumps(model_parameters))
-file_model_parameters.close()
