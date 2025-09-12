@@ -20,5 +20,5 @@ processed_items = json.loads(args.processed_items)
 
 
 
-print(f'Processed items: {processed_items}')
+print(f'Processed results: {processed_items}')
 
