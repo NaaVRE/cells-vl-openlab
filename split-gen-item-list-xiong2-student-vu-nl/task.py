@@ -1,3 +1,4 @@
+import numpy as np
 
 import argparse
 import json
@@ -19,8 +20,8 @@ id = args.id
 param_item_count = args.param_item_count
 
 
-items = list(range(param_item_count))
-print(f'Generated items: {items}')
+items = [np.arange(i+2, dtype=float) for i in range(param_item_count)]
+print(f'Generated items (arrays): {[arr.tolist() for arr in items]}')
 
 file_items = open("/tmp/items_" + id + ".json", "w")
 file_items.write(json.dumps(items))
