@@ -20,23 +20,15 @@ items = json.loads(args.items)
 
 
 
-def process_item(arr):
-    print(f'Processing array of shape {arr.shape}')
-    return parallel_ok_3d_loop(arr)
+def process_item(item):
+    print(f'Processing item {item}')
+    return item / 42
 
-def parallel_ok_3d_loop(arr):
-    result = 0.0
-    n = arr.shape[0]
-    for i in range(n):
-        for j in range(n):
-            for k in range(n):
-                result += (arr[i] + arr[j] + arr[k]) * 0.000001
-    return result
-
-print("Items to process:", [arr.tolist() for arr in items])
+print(f'Items to process: {items}')
 processed_items = []
-for arr in items:
-    processed_items.append(process_item(arr))
+for item in items:
+    processed_items.append(process_item(item))
+print(f'Processed items: {processed_items}')
 
 file_processed_items = open("/tmp/processed_items_" + id + ".json", "w")
 file_processed_items.write(json.dumps(processed_items))
