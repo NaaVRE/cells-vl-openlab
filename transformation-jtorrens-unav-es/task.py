@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from pathlib import Path
 import numpy as np
-import LinearRegression
+from sklearn.linear_model import LinearRegression
 
 import argparse
 import json
@@ -107,7 +107,6 @@ else:
 
 
 
-
 print(os.getcwd())
 projectFolder = r'/home/jovyan/Virtual Labs/ICP'
 
@@ -190,8 +189,6 @@ if archivos:
 
 else:
     print("No hay archivos de pH disponibles!")
-
-
 
 
 
