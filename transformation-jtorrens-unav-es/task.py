@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from pathlib import Path
 import numpy as np
-from sklearn.linear_model import LinearRegression
+import LinearRegression
 
 import argparse
 import json
