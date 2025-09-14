@@ -1,0 +1,44 @@
+
+import argparse
+import json
+import os
+arg_parser = argparse.ArgumentParser()
+
+
+arg_parser.add_argument('--id', action='store', type=str, required=True, dest='id')
+
+
+arg_parser.add_argument('--batches', action='store', type=str, required=True, dest='batches')
+
+
+args = arg_parser.parse_args()
+print(args)
+
+id = args.id
+
+batches = json.loads(args.batches)
+
+
+
+def process_item(n: int):
+    return n / 42.0
+
+print(f'Batches to process: {len(batches)}')
+processed_batches = []
+for rb in batches:
+    start, end, step = rb["start"], rb["end"], rb["step"]
+    processed_batch = []
+    for n in range(start, end, step):
+        processed_batch.append(process_item(n))
+    processed_batches.append(processed_batch)
+
+preview = []
+for b in processed_batches:
+    preview.extend(b)
+    if len(preview) >= 10:
+        break
+print(f'Processed preview (10): {preview[:10]}')
+
+file_processed_batches = open("/tmp/processed_batches_" + id + ".json", "w")
+file_processed_batches.write(json.dumps(processed_batches))
+file_processed_batches.close()
