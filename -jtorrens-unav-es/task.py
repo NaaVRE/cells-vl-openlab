@@ -26,10 +26,10 @@ extract_dir = args.extract_dir.replace('"','')
 print(os.getcwd())
 projectFolder = r'/home/jovyan/Virtual Labs/ICP'
 
-input_dir = f"{projectFolder}/input/level0/"
+extract_dir = extract_dir
 
-output = f"{projectFolder}/output/level0_splitted/"
-os.makedirs(output, exist_ok=True)
+output_dir = f"{projectFolder}/output/level0_splitted/"
+os.makedirs(output_dir, exist_ok=True)
 
 split_column = "SiteCode"
 
@@ -54,7 +54,7 @@ if archivos:
 
         for value, subset in df.groupby(split_column):
             safe_value = str(value).replace(" ", "_")
-            output_file = os.path.join(output, f"{base_name}_{safe_value}.xlsx")
+            output_file = os.path.join(output_dir, f"{base_name}_{safe_value}.xlsx")
 
             try:
                 with pd.ExcelWriter(output_file, engine="xlsxwriter") as writer:
@@ -65,3 +65,6 @@ if archivos:
 else:
     print(f"⚠️ No se encontraron archivos en {extract_dir}")
 
+file_output_dir = open("/tmp/output_dir_" + id + ".json", "w")
+file_output_dir.write(json.dumps(output_dir))
+file_output_dir.close()
