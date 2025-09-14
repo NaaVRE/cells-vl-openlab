@@ -2,7 +2,6 @@ import os
 import pandas as pd
 from pathlib import Path
 import numpy as np
-from sklearn.linear_model import LinearRegression
 
 import argparse
 import json
@@ -82,16 +81,18 @@ if archivos:
             AlkalinityICPForest=[]
             for sample in datosMensuales.SampleID.unique().tolist():
                 subset = datosMensualesRaw[datosMensualesRaw['SampleID'] == sample]
-                xAxis=subset[['HCLVolume(ml)']]
-                yAxisRaw=10**(-subset['pH'])*(subset['HCLVolume(ml)']+subset['SamplingVolume(ml)'])/1000*10
-                yAxis=yAxisRaw.values.reshape(-1, 1)
-                modelo = LinearRegression()
-                modelo.fit(xAxis, yAxis)
-                interseccion_en_eje_x = modelo.predict(pd.DataFrame([[0]], columns=['HCLVolume(ml)']))[0,0]
-                pendiente=modelo.coef_[0,0]
-                AlkalinityICPForestVal=((((((-interseccion_en_eje_x/pendiente)/1000)*subset['HCL(mol/l)'].iloc[0])/subset['SamplingVolume(ml)'].iloc[0]/1000*100)*10)*1000)*1000000
-                AlkalinityICPForest.append(AlkalinityICPForestVal) 
-
+                xAxis = subset[['HCLVolume(ml)']].values.flatten()
+                yAxisRaw = 10**(-subset['pH']) * (subset['HCLVolume(ml)'] + subset['SamplingVolume(ml)']) / 1000 * 10
+                yAxis = yAxisRaw.values.flatten()
+                
+                pendiente, intercept = np.polyfit(xAxis, yAxis, 1)
+                
+                interseccion_en_eje_x = -intercept / pendiente
+                
+                AlkalinityICPForestVal = ((((((-interseccion_en_eje_x / pendiente)/1000) * subset['HCL(mol/l)'].iloc[0])
+                                            / subset['SamplingVolume(ml)'].iloc[0] / 1000 * 100) * 10) * 1000) * 1000000
+                AlkalinityICPForest.append(AlkalinityICPForestVal)
+            
             AlkalinityICPForest = [x if x >= 0 else 0 for x in AlkalinityICPForest]
             datosMensuales['AlkalinityICPForests(µeq/l)'] = AlkalinityICPForest
 
