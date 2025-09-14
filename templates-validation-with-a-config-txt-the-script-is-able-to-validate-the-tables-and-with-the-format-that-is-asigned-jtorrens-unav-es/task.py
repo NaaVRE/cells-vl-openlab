@@ -1,9 +1,10 @@
+from minio import Minio
+import pandas as pd
 import os
 import zipfile
 import json
 import glob
 import sys
-import pandas as pd
 import numpy as np
 from pathlib import Path
 import re
@@ -27,13 +28,31 @@ id = args.id
 
 
 
+pd.set_option('future.no_silent_downcasting', True)
+
+os.makedirs(os.path.join(r'/home/jovyan/Virtual Labs/ICP'), exist_ok=True)
+os.makedirs(os.path.join(r'/home/jovyan/Virtual Labs/ICP/input'), exist_ok=True)
 projectFolder = r'/home/jovyan/Virtual Labs/ICP'
+
+param_minio_endpoint = "scruffy.lab.uvalight.net:9000"
+param_minio_user_prefix = "jtorrens@unav.es" # Your personal folder in the naa-vre-user-data bucket in MinIO
+secret_minio_access_key = "DRaF6v90HqmEPTSGLdQU"
+secret_minio_secret_key = "xSO5Z5NadyNDWhA1cbQiFHrfOFivfC8CcZUYr93E"
+
+mc = Minio(endpoint=param_minio_endpoint,
+ access_key=secret_minio_access_key,
+ secret_key=secret_minio_secret_key)
+
+mc.fget_object(bucket_name="naa-vre-user-data", object_name=f"{param_minio_user_prefix}/ICP/input/allData.zip", file_path="/home/jovyan/Virtual Labs/ICP/input/allData.zip")
+mc.fget_object(bucket_name="naa-vre-user-data", object_name=f"{param_minio_user_prefix}/ICP/input/tables_config.txt", file_path="/home/jovyan/Virtual Labs/ICP/input/tables_config.txt")
+
 
 param_zinInput = "allData.zip"
 zip_path = os.path.join(projectFolder, f"input/{param_zinInput}")
 extract_dir = os.path.join(projectFolder, "input/level0")
 
-config_file = os.path.join(projectFolder, "input/tables_config.txt")
+param_configTable = "tables_config.txt"
+config_file = os.path.join(projectFolder, f"input/{param_configTable}")
 
 os.makedirs(os.path.join(projectFolder, "output"), exist_ok=True)
 output_txt = os.path.join(projectFolder, "output/validation_log.txt")
