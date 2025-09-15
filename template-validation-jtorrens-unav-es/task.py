@@ -19,12 +19,15 @@ arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('--id', action='store', type=str, required=True, dest='id')
 
 
+arg_parser.add_argument('--zipInput', action='store', type=str, required=True, dest='zipInput')
+
 
 args = arg_parser.parse_args()
 print(args)
 
 id = args.id
 
+zipInput = args.zipInput.replace('"','')
 
 
 
@@ -47,8 +50,8 @@ mc.fget_object(bucket_name="naa-vre-user-data", object_name=f"{param_minio_user_
 mc.fget_object(bucket_name="naa-vre-user-data", object_name=f"{param_minio_user_prefix}/ICP/input/tables_config.txt", file_path="/home/jovyan/Virtual Labs/ICP/input/tables_config.txt")
 
 
-param_zinInput = "allData.zip"
-zip_path = os.path.join(projectFolder, f"input/{param_zinInput}")
+param_zipInput = zipInput
+zip_path = os.path.join(projectFolder, f"input/{param_zipInput}")
 extract_dir = os.path.join(projectFolder, "input/level0")
 
 param_configTable = "tables_config.txt"
