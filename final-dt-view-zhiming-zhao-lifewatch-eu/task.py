@@ -8,7 +8,11 @@ arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('--id', action='store', type=str, required=True, dest='id')
 
 
-arg_parser.add_argument('--ET', action='store', type=str, required=True, dest='ET')
+arg_parser.add_argument('--MapV', action='store', type=str, required=True, dest='MapV')
+
+arg_parser.add_argument('--RasterData', action='store', type=str, required=True, dest='RasterData')
+
+arg_parser.add_argument('--Timeseriesoffarm', action='store', type=str, required=True, dest='Timeseriesoffarm')
 
 
 args = arg_parser.parse_args()
@@ -16,21 +20,18 @@ print(args)
 
 id = args.id
 
-ET = args.ET.replace('"','')
+MapV = args.MapV.replace('"','')
+RasterData = args.RasterData.replace('"','')
+Timeseriesoffarm = args.Timeseriesoffarm.replace('"','')
 
 
 
-print (ET)
-RasterData=""
-MapV=""
-Timeseriesoffarm=""
+ET=""
 
-file_MapV = open("/tmp/MapV_" + id + ".json", "w")
-file_MapV.write(json.dumps(MapV))
-file_MapV.close()
-file_RasterData = open("/tmp/RasterData_" + id + ".json", "w")
-file_RasterData.write(json.dumps(RasterData))
-file_RasterData.close()
-file_Timeseriesoffarm = open("/tmp/Timeseriesoffarm_" + id + ".json", "w")
-file_Timeseriesoffarm.write(json.dumps(Timeseriesoffarm))
-file_Timeseriesoffarm.close()
+print (RasterData)
+print (MapV)
+print (Timeseriesoffarm)
+
+file_ET = open("/tmp/ET_" + id + ".json", "w")
+file_ET.write(json.dumps(ET))
+file_ET.close()
