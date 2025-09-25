@@ -24,7 +24,19 @@ print (remoteSensoringURL)
 
 mapv=""
 raster=""
+LU=""
+LAI=""
+NDVI=""
 
+file_LAI = open("/tmp/LAI_" + id + ".json", "w")
+file_LAI.write(json.dumps(LAI))
+file_LAI.close()
+file_LU = open("/tmp/LU_" + id + ".json", "w")
+file_LU.write(json.dumps(LU))
+file_LU.close()
+file_NDVI = open("/tmp/NDVI_" + id + ".json", "w")
+file_NDVI.write(json.dumps(NDVI))
+file_NDVI.close()
 file_mapv = open("/tmp/mapv_" + id + ".json", "w")
 file_mapv.write(json.dumps(mapv))
 file_mapv.close()
