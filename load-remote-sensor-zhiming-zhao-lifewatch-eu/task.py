@@ -21,8 +21,13 @@ remoteSensoringURL = args.remoteSensoringURL.replace('"','')
 
 
 print (remoteSensoringURL)
-remoteSensorData=""
 
-file_remoteSensorData = open("/tmp/remoteSensorData_" + id + ".json", "w")
-file_remoteSensorData.write(json.dumps(remoteSensorData))
-file_remoteSensorData.close()
+mapv=""
+raster=""
+
+file_mapv = open("/tmp/mapv_" + id + ".json", "w")
+file_mapv.write(json.dumps(mapv))
+file_mapv.close()
+file_raster = open("/tmp/raster_" + id + ".json", "w")
+file_raster.write(json.dumps(raster))
+file_raster.close()
